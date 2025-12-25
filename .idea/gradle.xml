@@ -37,7 +37,11 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/products" />
             <option value="$PROJECT_DIR$/feature/products/details" />
-            <option value="$PROJECT_DIR$/feature/products/list" />
+            <option value="$PROJECT_DIR$/feature/products/details/api" />
+            <option value="$PROJECT_DIR$/feature/products/details/impl" />
+            <option value="$PROJECT_DIR$/feature/products/items" />
+            <option value="$PROJECT_DIR$/feature/products/items/api" />
+            <option value="$PROJECT_DIR$/feature/products/items/impl" />
           </set>
         </option>
       </GradleProjectSettings>

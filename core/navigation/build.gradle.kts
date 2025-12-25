@@ -13,9 +13,9 @@ android {
 dependencies {
 
     api(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.savedstate.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
 
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+    implementation(libs.androidx.savedstate.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
