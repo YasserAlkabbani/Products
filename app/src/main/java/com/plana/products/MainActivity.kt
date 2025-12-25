@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.plana.products.core.designsystem.theme.ProductsTheme
-import com.plana.products.ui.ProductsApp
+import com.plana.products.ui.PApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ProductsTheme {
-                ProductsApp()
+                PApp()
             }
         }
     }
