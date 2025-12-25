@@ -12,10 +12,10 @@ class RoomConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-                "implementation"(libs.findLibrary("androidx.room.runtime"))
-                "implementation"(libs.findLibrary("androidx.room.compiler"))
-                "implementation"(libs.findLibrary("androidx.room.ktx"))
-                "implementation"(libs.findLibrary("androidx.room.paging"))
+                "implementation"(libs.findLibrary("androidx.room.runtime").get())
+                "implementation"(libs.findLibrary("androidx.room.compiler").get())
+                "implementation"(libs.findLibrary("androidx.room.ktx").get())
+                "implementation"(libs.findLibrary("androidx.room.paging").get())
             }
 
         }

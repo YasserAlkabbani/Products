@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.plana.products.library)
-//    alias(libs.plugins.plana.products.room)
-//    alias(libs.plugins.plana.products.hilt)
+    alias(libs.plugins.plana.products.room)
+    alias(libs.plugins.plana.products.hilt)
 }
 
 android {

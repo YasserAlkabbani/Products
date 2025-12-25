@@ -1,10 +1,13 @@
 plugins {
     alias(libs.plugins.plana.products.library)
-//    alias(libs.plugins.plana.products.hilt)
+    alias(libs.plugins.plana.products.hilt)
     alias(libs.plugins.kotlin.serialization)
 }
 
 android {
+    buildFeatures {
+        buildConfig = true
+    }
     namespace = "com.plana.products.core.network"
 }
 

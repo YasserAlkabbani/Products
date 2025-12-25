@@ -16,11 +16,11 @@ import com.plana.products.feature.products.items.api.ProductsItemsNavKey
 import com.plana.products.feature.products.items.impl.productItemsEntry
 
 @Composable
-fun ProductsApp() {
+fun PApp() {
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
         val navigationState = rememberNavigationState(ProductsItemsNavKey)
-        val navigator= remember{ Navigator(navigationState) }
+        val navigator = remember { Navigator(navigationState) }
         val entryProvider = entryProvider {
             productItemsEntry(navigator)
             productDetailsEntry(navigator)
