@@ -1,6 +1,6 @@
 package com.plana.products.core.data.model
 
-import com.plana.products.core.database.model.model.ProductEntity
+import com.plana.products.core.database.model.ProductEntity
 import com.plana.products.core.model.Product
 import com.plana.products.core.network.model.ProductNetwork
 

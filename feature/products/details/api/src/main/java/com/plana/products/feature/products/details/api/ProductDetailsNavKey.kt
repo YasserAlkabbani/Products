@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ProductDetailsNavKey(
-    val productID: Long
-): NavKey
+    val productID: Int
+) : NavKey

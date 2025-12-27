@@ -9,10 +9,8 @@ android {
 
 dependencies {
 
-//    api(projects.core.design-system)
+    api(projects.core.designsystem)
     api(projects.core.model)
-
-    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
