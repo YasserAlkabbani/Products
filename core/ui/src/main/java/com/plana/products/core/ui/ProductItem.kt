@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.plana.products.core.designsystem.PBackground
 import com.plana.products.core.designsystem.PPreviews
@@ -48,8 +49,8 @@ fun ProductItem(
                 )
                 PText(
                     modifier = Modifier,
-                    text = product.price.toString(),
-                    style = MaterialTheme.typography.bodyLarge,
+                    text = stringResource(R.string.price, product.price),
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         },

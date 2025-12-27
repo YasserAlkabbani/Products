@@ -25,13 +25,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.plana.products.core.designsystem.chip.PFilterChip
+import com.plana.products.core.designsystem.progress.PLinearProgress
 import com.plana.products.core.designsystem.text.PText
 import com.plana.products.core.model.Product
-import com.plana.products.core.ui.PErrorMessage
+import com.plana.products.core.ui.PErrorConnectionIssue
+import com.plana.products.core.ui.PErrorConnectionTimeout
+import com.plana.products.core.ui.PErrorCustomMessage
 import com.plana.products.core.ui.ProductItem
 import com.plana.products.core.ui.ProductsItemsShimmer
 
@@ -115,38 +119,21 @@ fun ProductsItemsScreen(
                     contentAlignment = Alignment.TopCenter,
                     content = { productsItemState ->
                         when (productsItemState) {
-                            is ProductsItemsState.ErrorWithMessage ->
-                                PErrorMessage(
-                                    errorTitle = stringResource(R.string.ops_theres_something_wrong),
-                                    errorSubtitle = productsItemState.errorMessage
-                                        ?: stringResource(R.string.unknown_error),
-                                    buttonText = stringResource(R.string.try_again),
-                                    onRetry = refreshProductsItems
-                                )
-
+                            is ProductsItemsState.Loading -> PLinearProgress()
+                            is ProductsItemsState.Success -> Unit
                             is ProductsItemsState.TimeoutInternetConnection ->
-                                PErrorMessage(
-                                    errorTitle = stringResource(R.string.slow_internet_connection),
-                                    errorSubtitle = stringResource(R.string.make_sure_to_have_a_good_internet_connection),
-                                    buttonText = stringResource(R.string.try_again),
-                                    onRetry = refreshProductsItems
-                                )
+                                PErrorConnectionTimeout(onRetry = refreshProductsItems)
 
                             is ProductsItemsState.NoInternetConnection ->
-                                PErrorMessage(
-                                    errorTitle = stringResource(R.string.connection_issue),
-                                    errorSubtitle = stringResource(R.string.please_check_your_internet_connection),
-                                    buttonText = stringResource(R.string.try_again),
+                                PErrorConnectionIssue(onRetry = refreshProductsItems)
+
+                            is ProductsItemsState.ErrorWithMessage ->
+                                PErrorCustomMessage(
+                                    errorMessage = productsItemState.errorMessage,
                                     onRetry = refreshProductsItems
                                 )
 
-                            ProductsItemsState.Loading -> LinearWavyProgressIndicator(
-                                modifier = Modifier
-                                    .padding(vertical = 12.dp)
-                                    .fillMaxWidth()
-                            )
 
-                            ProductsItemsState.Success -> Unit
                         }
                     }
                 )
@@ -158,8 +145,11 @@ fun ProductsItemsScreen(
                     contentAlignment = Alignment.TopCenter,
                     content = { isEmpty ->
                         when (isEmpty) {
-                            true -> when (productsItemState) {
-                                ProductsItemsState.Loading -> ProductsItemsShimmer(8)
+                            true -> when {
+                                productsLazyPagingItems.loadState.refresh == LoadState.Loading ||
+                                        productsItemState == ProductsItemsState.Loading
+                                    -> ProductsItemsShimmer(8)
+
                                 else -> Column(
                                     modifier = Modifier.fillMaxSize(),
                                     horizontalAlignment = Alignment.CenterHorizontally,
