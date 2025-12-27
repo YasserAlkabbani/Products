@@ -1,4 +1,4 @@
-package com.plana.products.core.database.model.di
+package com.plana.products.core.database.di
 
 import com.plana.products.core.database.model.PDatabase
 import dagger.Module

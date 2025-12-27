@@ -1,4 +1,4 @@
-package com.plana.products.core.database.model.model
+package com.plana.products.core.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

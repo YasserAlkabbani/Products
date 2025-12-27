@@ -1,6 +1,6 @@
-package com.plana.products.core.database.model.di
+package com.plana.products.core.database.di
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.plana.products.core.database.model.PDatabase
 import dagger.Module
@@ -18,9 +18,9 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun providePDatabaseModule(
-        @ApplicationContext application: Application
+        @ApplicationContext applicationContext: Context
     ) = Room.databaseBuilder(
-        application,
+        applicationContext,
         PDatabase::class.java,
         "p-database"
     ).build()

@@ -9,8 +9,11 @@ android {
 
 dependencies {
 
+    implementation(projects.core.data)
     implementation(projects.feature.products.items.api)
     implementation(projects.feature.products.details.api)
+
+    implementation(libs.androidx.paging.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
