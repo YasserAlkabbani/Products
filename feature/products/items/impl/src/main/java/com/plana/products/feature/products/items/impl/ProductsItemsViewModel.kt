@@ -57,7 +57,7 @@ class ProductsItemsViewModel @Inject constructor(
         productsRepository
             .refreshProducts()
             .onEach { requestState ->
-                Log.d("TEST_PRODUCTS_ITEMS", "REFRESH START ON_EACH $requestState")
+                Log.d("TEST_PRODUCTS_ITEMS", "REFRESH_PRODUCTS_ITEMS_STATE $requestState")
                 when (requestState) {
                     is RequestState.Loading -> _productsItemsState.update { ProductsItemsState.Loading }
                     is RequestState.Success -> _productsItemsState.update { ProductsItemsState.Success }
@@ -68,9 +68,7 @@ class ProductsItemsViewModel @Inject constructor(
                             is PError.UnknownError ->
                                 ProductsItemsState.ErrorWithMessage(pError.throwable.message)
                         }
-
                     }
-
                 }
             }
             .launchIn(viewModelScope)

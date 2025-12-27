@@ -14,7 +14,7 @@ import com.plana.products.core.designsystem.text.PText
 @Composable
 fun PButton(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String?,
     imageVector: ImageVector?,
     onClick: () -> Unit
 ) {
@@ -23,7 +23,7 @@ fun PButton(
         modifier = modifier,
         onClick = onClick,
         content = {
-            PText(text = text)
+            text?.let { PText(text = text) }
             imageVector?.let { PIcon(imageVector = imageVector) }
         }
     )

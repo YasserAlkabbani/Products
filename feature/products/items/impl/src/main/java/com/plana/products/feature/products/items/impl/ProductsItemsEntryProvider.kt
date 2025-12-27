@@ -7,10 +7,10 @@ import com.plana.products.feature.products.details.api.ProductDetailsNavKey
 import com.plana.products.feature.products.items.api.ProductsItemsNavKey
 
 fun EntryProviderScope<NavKey>.productItemsEntry(navigator: Navigator) {
-    entry<ProductsItemsNavKey>{
+    entry<ProductsItemsNavKey> { navKey ->
         ProductsItemsScreen(
-            navigateToProductDetails = {
-                navigator.navigate(ProductDetailsNavKey(it))
+            navigateToProductDetails = { productID ->
+                navigator.navigate(ProductDetailsNavKey(productID))
             }
         )
     }

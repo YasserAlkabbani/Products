@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="all">All</string>
-    <string name="ops_theres_something_wrong">Ops, there's something wrong..</string>
-    <string name="please_check_your_internet_connection">"Please check your internet connection.."</string>
-    <string name="connection_issue">Connection issue.</string>
-    <string name="please_try_again_later">Please try again later.</string>
-    <string name="try_again">Try Again.</string>
-    <string name="ops_theres_no_products_to_show">Ops, there's no product to show.</string>
-    <string name="unknown_error">Unknown Error.</string>
-    <string name="slow_internet_connection">Slow internet connection.</string>
-    <string name="make_sure_to_have_a_good_internet_connection">Make Sure to have a good internet connection.</string>
+    <string name="ops_theres_no_products_to_show">Ops, there\'s no product to show.</string>
 </resources>
