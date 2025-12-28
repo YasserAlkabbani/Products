@@ -25,6 +25,7 @@ internal object NetworkModule {
     @Singleton
     fun provideNetworkJson(): Json = Json {
         ignoreUnknownKeys = true
+        explicitNulls = false
     }
 
 

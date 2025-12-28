@@ -26,7 +26,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.plana.products.core.designsystem.button.PButton
 import com.plana.products.core.designsystem.button.PIconButton
 import com.plana.products.core.designsystem.card.PCardContainer
 import com.plana.products.core.designsystem.image.PImage
@@ -35,7 +34,7 @@ import com.plana.products.core.designsystem.text.PText
 import com.plana.products.core.model.Product
 import com.plana.products.core.ui.PErrorConnectionIssue
 import com.plana.products.core.ui.PErrorConnectionTimeout
-import com.plana.products.core.ui.PErrorCustomMessage
+import com.plana.products.core.ui.PErrorUnexpected
 import com.plana.products.core.ui.PRating
 
 @Composable
@@ -90,9 +89,8 @@ fun ProductDetailsScreen(
                             onRetry = refreshProductDetails
                         )
 
-                    is ProductsDetailsState.ErrorWithMessage -> PErrorCustomMessage(
+                    is ProductsDetailsState.ErrorWithMessage -> PErrorUnexpected(
                         modifier = Modifier.padding(horizontal = 8.dp),
-                        errorMessage = productsDetailsState.errorMessage,
                         onRetry = refreshProductDetails
                     )
 

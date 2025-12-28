@@ -9,4 +9,5 @@
     <string name="unknown_error">Unknown Error</string>
     <string name="slow_internet_connection">Slow internet connection</string>
     <string name="make_sure_to_have_a_good_internet_connection">Make Sure to have a good internet connection</string>
+    <string name="unexpected_issue">Unexpected issue, please try again later</string>
 </resources>

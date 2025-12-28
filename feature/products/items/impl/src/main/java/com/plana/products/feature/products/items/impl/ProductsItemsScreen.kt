@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.LinearWavyProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
@@ -36,7 +35,7 @@ import com.plana.products.core.designsystem.text.PText
 import com.plana.products.core.model.Product
 import com.plana.products.core.ui.PErrorConnectionIssue
 import com.plana.products.core.ui.PErrorConnectionTimeout
-import com.plana.products.core.ui.PErrorCustomMessage
+import com.plana.products.core.ui.PErrorUnexpected
 import com.plana.products.core.ui.ProductItem
 import com.plana.products.core.ui.ProductsItemsShimmer
 
@@ -137,9 +136,8 @@ fun ProductsItemsScreen(
                                 )
 
                             is ProductsItemsState.ErrorWithMessage ->
-                                PErrorCustomMessage(
+                                PErrorUnexpected(
                                     modifier = Modifier.padding(horizontal = horizontalPadding),
-                                    errorMessage = productsItemState.errorMessage,
                                     onRetry = refreshProductsItems
                                 )
 
