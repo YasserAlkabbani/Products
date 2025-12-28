@@ -18,6 +18,7 @@ import androidx.compose.material3.LinearWavyProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -87,6 +88,8 @@ fun ProductsItemsScreen(
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
+    val horizontalPadding = remember(isLandscape) { if (isLandscape) 96.dp else 8.dp }
+
 
     Column(Modifier.fillMaxSize()) {
         Row(
@@ -122,13 +125,20 @@ fun ProductsItemsScreen(
                             is ProductsItemsState.Loading -> PLinearProgress()
                             is ProductsItemsState.Success -> Unit
                             is ProductsItemsState.TimeoutInternetConnection ->
-                                PErrorConnectionTimeout(onRetry = refreshProductsItems)
+                                PErrorConnectionTimeout(
+                                    modifier = Modifier.padding(horizontal = horizontalPadding),
+                                    onRetry = refreshProductsItems
+                                )
 
                             is ProductsItemsState.NoInternetConnection ->
-                                PErrorConnectionIssue(onRetry = refreshProductsItems)
+                                PErrorConnectionIssue(
+                                    modifier = Modifier.padding(horizontal = horizontalPadding),
+                                    onRetry = refreshProductsItems
+                                )
 
                             is ProductsItemsState.ErrorWithMessage ->
                                 PErrorCustomMessage(
+                                    modifier = Modifier.padding(horizontal = horizontalPadding),
                                     errorMessage = productsItemState.errorMessage,
                                     onRetry = refreshProductsItems
                                 )
@@ -140,7 +150,7 @@ fun ProductsItemsScreen(
                 AnimatedContent(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(horizontal = if (isLandscape) 96.dp else 8.dp),
+                        .padding(horizontal = horizontalPadding),
                     targetState = isEmptyList,
                     contentAlignment = Alignment.TopCenter,
                     content = { isEmpty ->

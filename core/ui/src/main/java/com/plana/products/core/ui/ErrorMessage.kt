@@ -8,25 +8,33 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Replay
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.plana.products.core.designsystem.PBackground
 import com.plana.products.core.designsystem.PPreviews
 import com.plana.products.core.designsystem.button.PButton
+import com.plana.products.core.designsystem.button.PTextButton
+import com.plana.products.core.designsystem.card.PCardContainer
 import com.plana.products.core.designsystem.text.PText
 
 
 @Composable
 fun PErrorCustomMessage(
+    modifier: Modifier = Modifier,
     errorMessage: String?,
     onRetry: () -> Unit
 ) {
     PErrorMessage(
+        modifier = modifier,
         errorTitle = stringResource(R.string.ops_theres_something_wrong),
         errorSubtitle = errorMessage ?: stringResource(R.string.unknown_error),
         buttonText = stringResource(R.string.try_again),
@@ -36,9 +44,11 @@ fun PErrorCustomMessage(
 
 @Composable
 fun PErrorConnectionIssue(
+    modifier: Modifier = Modifier,
     onRetry: () -> Unit
 ) {
     PErrorMessage(
+        modifier = modifier,
         errorTitle = stringResource(R.string.connection_issue),
         errorSubtitle = stringResource(R.string.please_check_your_internet_connection),
         buttonText = stringResource(R.string.try_again),
@@ -48,9 +58,11 @@ fun PErrorConnectionIssue(
 
 @Composable
 fun PErrorConnectionTimeout(
+    modifier: Modifier = Modifier,
     onRetry: () -> Unit
 ) {
     PErrorMessage(
+        modifier = modifier,
         errorTitle = stringResource(R.string.slow_internet_connection),
         errorSubtitle = stringResource(R.string.make_sure_to_have_a_good_internet_connection),
         buttonText = stringResource(R.string.try_again),
@@ -60,35 +72,44 @@ fun PErrorConnectionTimeout(
 
 @Composable
 fun PErrorMessage(
+    modifier: Modifier = Modifier,
     errorTitle: String,
     errorSubtitle: String,
     buttonText: String,
     onRetry: () -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .padding(vertical = 12.dp)
+    Card(
+        modifier = modifier
+            .padding(vertical = 4.dp)
             .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        colors = CardDefaults.cardColors().copy(
+            containerColor = MaterialTheme.colorScheme.errorContainer
+        )
     ) {
-        PText(
-            text = errorTitle,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.titleLarge
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        PText(
-            text = errorSubtitle,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyLarge
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        PButton(
-            text = buttonText,
-            imageVector = Icons.Default.Replay,
-            onClick = onRetry
-        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top,
+        ) {
+            PText(
+                text = errorTitle,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.titleMedium
+            )
+            PText(
+                text = errorSubtitle,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            PTextButton(
+                text = buttonText,
+                imageVector = Icons.Default.Replay,
+                onClick = onRetry
+            )
+        }
     }
 }
 
@@ -97,8 +118,8 @@ fun PErrorMessage(
 fun PErrorCustomMessagePreview() {
     PBackground {
         PErrorCustomMessage(
-            "ops There Something Error Happened",
-            { }
+            errorMessage = "ops There Something Error Happened",
+            onRetry = { }
         )
     }
 }
@@ -107,7 +128,7 @@ fun PErrorCustomMessagePreview() {
 @Composable
 fun PErrorConnectionTimeoutPreview() {
     PBackground {
-        PErrorConnectionTimeout({ })
+        PErrorConnectionTimeout(onRetry = { })
     }
 }
 
@@ -115,7 +136,7 @@ fun PErrorConnectionTimeoutPreview() {
 @Composable
 fun PErrorConnectionIssuePreview() {
     PBackground {
-        PErrorConnectionIssue({ })
+        PErrorConnectionIssue(onRetry = { })
     }
 }
 
@@ -124,10 +145,10 @@ fun PErrorConnectionIssuePreview() {
 fun PErrorMessagePreview() {
     PBackground {
         PErrorMessage(
-            "ops There Something Error Happened",
-            "PLease Try Aging Later..",
-            "Try Aging",
-            { }
+            errorTitle = "ops There Something Error Happened",
+            errorSubtitle = "PLease Try Aging Later..",
+            buttonText = "Try Aging",
+            onRetry = { }
         )
     }
 }

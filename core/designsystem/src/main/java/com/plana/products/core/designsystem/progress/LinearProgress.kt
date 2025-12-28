@@ -15,7 +15,7 @@ import com.plana.products.core.designsystem.PPreviews
 fun PLinearProgress() {
     LinearWavyProgressIndicator(
         modifier = Modifier
-            .padding(vertical = 12.dp)
+            .padding(vertical = 8.dp)
             .fillMaxWidth()
     )
 }
