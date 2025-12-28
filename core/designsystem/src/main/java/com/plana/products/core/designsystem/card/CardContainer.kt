@@ -11,7 +11,7 @@ import com.plana.products.core.designsystem.PPreviews
 import com.plana.products.core.designsystem.text.PText
 
 @Composable
-fun CardContainer(
+fun PCardContainer(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
@@ -27,9 +27,9 @@ fun CardContainer(
 
 @PPreviews
 @Composable
-fun CardContainerPreview() {
+fun PCardContainerPreview() {
     PBackground {
-        CardContainer {
+        PCardContainer {
             PText(text = "Product Item")
         }
     }
