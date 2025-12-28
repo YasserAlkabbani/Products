@@ -192,7 +192,11 @@ fun ProductDetailsPortrait(product: Product) {
 
 @Composable
 fun ProductDetailsLandscape(product: Product) {
-    Column(Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 6.dp)
+    ) {
         Row {
             PCardContainer(
                 modifier = Modifier
@@ -245,7 +249,6 @@ fun ProductDetailsLandscape(product: Product) {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(36.dp))
     }
 }
 

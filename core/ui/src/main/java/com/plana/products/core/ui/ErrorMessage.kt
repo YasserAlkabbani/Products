@@ -2,6 +2,7 @@ package com.plana.products.core.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,6 +25,7 @@ import com.plana.products.core.designsystem.PPreviews
 import com.plana.products.core.designsystem.button.PButton
 import com.plana.products.core.designsystem.button.PTextButton
 import com.plana.products.core.designsystem.card.PCardContainer
+import com.plana.products.core.designsystem.icon.PIcon
 import com.plana.products.core.designsystem.text.PText
 
 
@@ -84,7 +86,8 @@ fun PErrorMessage(
             .fillMaxWidth(),
         colors = CardDefaults.cardColors().copy(
             containerColor = MaterialTheme.colorScheme.errorContainer
-        )
+        ),
+        onClick = onRetry
     ) {
         Column(
             modifier = Modifier
@@ -104,11 +107,13 @@ fun PErrorMessage(
                 style = MaterialTheme.typography.bodyMedium
             )
             Spacer(modifier = Modifier.height(4.dp))
-            PTextButton(
-                text = buttonText,
-                imageVector = Icons.Default.Replay,
-                onClick = onRetry
-            )
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PText(text = buttonText)
+                PIcon(imageVector = Icons.Default.Replay)
+            }
         }
     }
 }
